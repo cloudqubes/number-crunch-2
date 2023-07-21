@@ -1,15 +1,13 @@
 # Overview
----
+
 `number-crunch-2` is the evolution of the [number-crunch] application.
 
-It splits the [number-crunch] application to two micro-services; `square-root` and `cube-root`.
+It splits the [number-crunch] application into two micro-services; `square-root` and `cube-root`.
 
-You can use this application for learning Kubernetes.
-
-
+I created this application for [demonstrating the use of Kubernetes ingress][kubernetes-ingress].
 
 # Get started
----
+
 Clone the repo.
 ```shell
 git clone git@github.com:cloudqubes/number-crunch-2.git
@@ -18,7 +16,7 @@ go run number-crunch.go
 
 # Square-root
 
-Return the square root of a number.
+The `square-root` micro-service returns the square root of a number.
 
 URL endpoint: `/square-root/<number>`
 
@@ -40,7 +38,7 @@ curl http://127.0.0.1:8080/square-root/16
 
 # Cube-root
 
-Return the cube root of a number.
+The `cube-root` micro-service returns the cube root of a number.
 
 URL endpoint: `/cube-root/<number>`
 
@@ -60,3 +58,4 @@ curl http://127.0.0.1:8080/cube-root/8
 ```
 
 [number-crunch]: https://github.com/cloudqubes/number-crunch
+[kubernetes-ingress]: https://www.cloudqubes.com/hands-on/how-to-use-ingress/
