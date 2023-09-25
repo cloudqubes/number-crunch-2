@@ -32,6 +32,11 @@ func squareRootHandler(w http.ResponseWriter, r *http.Request) {
 		panic(err)
 	}
 	sq := SQRoot{inputNumber, SquareRoot(inputNumber)}
+	strSq, err := json.Marshal(sq)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("Request: /square-root/%v, Response: %s\n", inputNumber, strSq)
 	json.NewEncoder(w).Encode(sq)
 }
 
