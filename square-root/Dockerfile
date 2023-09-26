@@ -1,4 +1,4 @@
-#version 2.0.2
+#version 3.0.1
 FROM golang:1.19.4-alpine3.17
 
 # Set destination for COPY

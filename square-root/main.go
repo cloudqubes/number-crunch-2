@@ -43,7 +43,7 @@ func squareRootHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("[%s:%s:square-root v2] Request: /square-root/%v, Response: %s\n", hostname, GetTimestamp(), inputNumber, strSq)
+	fmt.Printf("[%s:%s:square-root v3] Request: /square-root/%v, Response: %s\n", hostname, GetTimestamp(), inputNumber, strSq)
 	json.NewEncoder(w).Encode(sq)
 }
 
@@ -52,7 +52,7 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	urlMap := map[string]string{
 		"/square-root/x": "Square root of x",
 	}
-	fmt.Printf("[%s:%s:square-root v2] Request: %s\n", hostname, GetTimestamp(), r.URL.Path)
+	fmt.Printf("[%s:%s:square-root v3] Request: %s\n", hostname, GetTimestamp(), r.URL.Path)
 	json.NewEncoder(w).Encode(urlMap)
 }
 
