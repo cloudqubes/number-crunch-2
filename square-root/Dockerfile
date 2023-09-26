@@ -1,10 +1,11 @@
+#version 2.0.2
 FROM golang:1.19.4-alpine3.17
 
 # Set destination for COPY
 WORKDIR /app
 
 # Download Go modules
-COPY ../go.mod .
+COPY ./go.mod .
 # COPY go.sum .
 # RUN go mod download
 

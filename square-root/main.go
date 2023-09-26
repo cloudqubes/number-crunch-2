@@ -6,7 +6,7 @@ import (
 	"math"
 	"net/http"
 	"os"
-
+	"time"
 	// "fmt"
 	"encoding/json"
 	"strconv"
@@ -16,8 +16,15 @@ const (
 	defaultHTTPPort = "8080"
 )
 
+var hostname string
+
 func SquareRoot(x float64) float64 {
 	return math.Sqrt(x)
+}
+
+func GetTimestamp() string {
+	t := time.Now()
+	return t.Format("20060102150405")
 }
 
 type SQRoot struct {
@@ -36,7 +43,7 @@ func squareRootHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Printf("Request: /square-root/%v, Response: %s\n", inputNumber, strSq)
+	fmt.Printf("[%s:%s:square-root v2] Request: /square-root/%v, Response: %s\n", hostname, GetTimestamp(), inputNumber, strSq)
 	json.NewEncoder(w).Encode(sq)
 }
 
@@ -45,10 +52,18 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 	urlMap := map[string]string{
 		"/square-root/x": "Square root of x",
 	}
+	fmt.Printf("[%s:%s:square-root v2] Request: %s\n", hostname, GetTimestamp(), r.URL.Path)
 	json.NewEncoder(w).Encode(urlMap)
 }
 
 func main() {
+	h, error := os.Hostname()
+	if error != nil {
+		hostname = "none"
+	} else {
+		hostname = h
+	}
+
 	http.HandleFunc("/square-root/", squareRootHandler)
 	http.HandleFunc("/", rootHandler)
 
